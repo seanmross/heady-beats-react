@@ -5,26 +5,13 @@ import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import Button from 'material-ui/Button'
-
-// With Styles
 import { withStyles } from 'material-ui/styles'
 
-// With Theme
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { withTheme } from 'material-ui/styles'
-import blue from 'material-ui/colors/blue'
-
-const theme = createMuiTheme({
-    palette: {
-        primary: blue,
-    },
-});
-
 const styles = {
-    root: {
+    appBar: {
         width: '100%',
     },
-    flex: {
+    pullRight: {
         flex: 1,
     },
     menuButton: {
@@ -36,20 +23,18 @@ const styles = {
 function Navigation(props){
     const { classes } = props;
     return(
-        <div className={classes.root}>
-            <MuiThemeProvider theme={theme}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
-                            Title
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                    </Toolbar>
-                </AppBar>
-            </MuiThemeProvider>
+        <div className={classes.appBar}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="headline" color="inherit" className={classes.pullRight}>
+                        headybeats
+                    </Typography>
+                    <Button color="inherit" background-color="primary.light">Login</Button>
+                </Toolbar>
+            </AppBar>
         </div>
     )
 }
