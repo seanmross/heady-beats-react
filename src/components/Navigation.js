@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
+import logo from '../assets/images/logo.png'
 
 const styles = {
     appBar: {
@@ -27,7 +28,7 @@ function Navigation(props){
             <AppBar position="static">
                 <Toolbar>
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        <MenuIcon />
+                        <img src={logo} />
                     </IconButton>
                     <Typography variant="headline" color="inherit" className={classes.pullRight}>
                         headybeats
