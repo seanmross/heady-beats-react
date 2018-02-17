@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 
 // Custom theme
@@ -19,8 +10,7 @@ const slate = {
         backgroundColor: '#3B3F44'
     },
     brand: {
-        color: '#FFFFFF',
-        paddingLeft: 100
+        color: '#FFFFFF'
     },
     item: {
         color: '#9E9E93'
@@ -44,9 +34,10 @@ export default class Navigation extends Component {
     render() {
         return (
             <div>
-                <Navbar color="faded" light expand="md" style={ slate.bg }>
+                <Navbar light fixed={'top'} expand={'md'} style={ slate.bg }>
+                <Container>
                     <NavbarBrand style={ slate.brand }>
-                        <h4>headybeats</h4>
+                        <h1 className='display-5'>headybeats</h1>
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -57,7 +48,7 @@ export default class Navigation extends Component {
                             <NavItem >
                                 <NavLink style={slate.item}>Playlists</NavLink>
                             </NavItem>
-                            <UncontrolledDropdown nav inNavbar style={{ paddingRight:100 }}>
+                            <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret style={slate.item}>
                                     Profile
                                 </DropdownToggle>
@@ -68,11 +59,11 @@ export default class Navigation extends Component {
                                     <DropdownItem>
                                         Logout
                                     </DropdownItem>
-                                    <DropdownItem />
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                         </Nav>
                     </Collapse>
+                </Container>
                 </Navbar>
             </div>
         )
