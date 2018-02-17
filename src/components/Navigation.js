@@ -1,39 +1,80 @@
-import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import React, { Component } from 'react';
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
 
-export default class Example extends React.Component {
+// Custom theme
+const slate = {
+    bg: {
+        backgroundColor: '#3B3F44'
+    },
+    brand: {
+        color: '#FFFFFF',
+        paddingLeft: 100
+    },
+    item: {
+        color: '#9E9E93'
+    }
+}
+
+export default class Navigation extends Component {
     constructor(props) {
         super(props);
-
-        this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true
+            isOpen: false
         };
     }
 
-    toggleNavbar() {
+    toggle = () => {
         this.setState({
-            collapsed: !this.state.collapsed
-        });
+            isOpen: !this.state.isOpen
+        })
     }
+
     render() {
         return (
             <div>
-                <Navbar color="faded" light>
-                    <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
-                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <Collapse isOpen={!this.state.collapsed} navbar>
-                        <Nav navbar>
-                            <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
+                <Navbar color="faded" light expand="md" style={ slate.bg }>
+                    <NavbarBrand style={ slate.brand }>
+                        <h4>headybeats</h4>
+                    </NavbarBrand>
+                    <NavbarToggler onClick={this.toggle} />
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem  >
+                                <NavLink style={slate.item}>Search</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                            <NavItem >
+                                <NavLink style={slate.item}>Playlists</NavLink>
                             </NavItem>
+                            <UncontrolledDropdown nav inNavbar style={{ paddingRight:100 }}>
+                                <DropdownToggle nav caret style={slate.item}>
+                                    Profile
+                                </DropdownToggle>
+                                <DropdownMenu >
+                                    <DropdownItem>
+                                        Account
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        Logout
+                                    </DropdownItem>
+                                    <DropdownItem />
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
                         </Nav>
                     </Collapse>
                 </Navbar>
             </div>
-        );
+        )
     }
 }
