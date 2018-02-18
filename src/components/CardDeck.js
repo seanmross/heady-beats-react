@@ -1,31 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, Button, CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody } from 'reactstrap';
 import { observer } from 'mobx-react'
 
 @observer
-export default class Cards extends React.Component {
+export default class Cards extends Component {
     render(){
+        let store = this.props.store.albums
         return (
             <CardDeck>
-                <Card>
-                    <CardImg top width="100%" src={ this.props.AlbumStore.albums[0].albumCover } alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle> { this.props.AlbumStore.albums[0].song } </CardTitle>
-                        <CardSubtitle> { this.props.AlbumStore.albums[0].artist } </CardSubtitle>
-                        <CardText> { `${this.props.AlbumStore.albums[0].album}, ${this.props.AlbumStore.albums[0].year}` } </CardText>
-                        <Button>Go To Album</Button>
-                    </CardBody>
-                </Card>
-                <Card>
-                    <CardImg top width="100%" src={this.props.AlbumStore.albums[1].albumCover} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle> {this.props.AlbumStore.albums[1].song} </CardTitle>
-                        <CardSubtitle> {this.props.AlbumStore.albums[1].artist} </CardSubtitle>
-                        <CardText> {`${this.props.AlbumStore.albums[1].album}, ${this.props.AlbumStore.albums[1].year}`} </CardText>
-                        <Button>Go To Album</Button>
-                    </CardBody>
-                </Card>
+                {
+                    store.map(album => (
+                        <Card key={album.id}>
+                            <CardImg top width="100%" src={album.albumCover} alt="Card image cap" />
+                            <CardBody>
+                                <CardTitle> {album.song} </CardTitle>
+                                <CardSubtitle> {album.artist} </CardSubtitle>
+                                <CardText> {`${album.albumTitle}, ${album.year}`} </CardText>
+                                <Button>Go To Album</Button>
+                            </CardBody>
+                        </Card>
+                    ))
+                }
             </CardDeck>
         )
+
     }   
 }
