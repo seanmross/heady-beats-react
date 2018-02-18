@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import CardDeck from './CardDeck'
+import AlbumStore from '../stores/Albums'
 
 class Landing extends Component{
     render(){
@@ -13,7 +14,7 @@ class Landing extends Component{
                         </Col>
                     </Row>
                     <Row>
-                        <CardDeck />
+                        <CardDeck store={AlbumStore}/>
                     </Row>
                 </Container>
             </div>
